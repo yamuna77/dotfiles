@@ -1,0 +1,111 @@
+########################
+# Fresh Install Script #
+########################
+
+# Run this script to install all the things that belong on a development machine
+# A lot of this is taken from linux_mint_blog
+
+sudo apt-get update
+sudo apt-get upgrade
+
+# OS UX
+sudo apt-get install -y docky xbindkeys xbindkeys-config xautomation grdesktop xcalib ekiga
+
+# CLI Tools
+sudo apt-get install -y tree vim xclip dconf-tools youtube-dl nbtscan
+
+# Business Applications
+sudo apt-get install -y keepassx virtualbox
+
+# Software Development Utilities
+sudo apt-get install -y mysql-server mysql-client sqlite3 graphviz
+
+# Software Development Libraries
+sudo apt-get install -y build-essential bison openssl libreadline6 libreadline6-dev curl git-core zlib1g zlib1g-dev libssl-dev libyaml-dev libsqlite3-0 libsqlite3-dev libxml2-dev libxslt-dev autoconf
+
+# volitile dev deps that change names capriciously:
+sudo apt-get install -y libmysqlclient15-dev libmysqlclient2-dev
+
+# Install ruby
+gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+\curl -sSL https://get.rvm.io | bash -s stable --ruby
+
+# Setup Python for Mac ppl
+export PATH="$HOME/Library/Python/2.7/bin:$PATH"
+
+# Mac, OSX git branch tab completion
+# you need to source it...
+curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion.bash
+# Stop your mac from sleeping when you lock the screen
+sudo pmset -a sleep 0
+
+# Disable Mouse Acceleration:  http://osxdaily.com/2010/08/25/mouse-acceleration/
+defaults write .GlobalPreferences com.apple.mouse.scaling -1
+
+# Enable vim and terminal usage
+#http://www.idownloadblog.com/2015/01/14/how-to-enable-key-repeats-on-your-mac/
+defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
+
+###############
+# Vim Plugins #
+###############
+
+# Colorize log files
+# https://vim.sourceforge.io/scripts/script.php?script_id=302
+
+
+################
+# Install node #
+################
+
+# Use nvm!
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.4/install.sh | bash
+
+#
+# Install docker... too important not to script
+#
+# https://docs.docker.com/engine/installation/linux/ubuntulinux/
+sudo apt-get install -y apt-transport-https ca-certificates
+sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+
+echo "deb https://apt.dockerproject.org/repo ubuntu-trusty main" > /etc/apt/sources.list.d/docker.list
+
+sudo apt-get update
+sudo apt-get install -y linux-image-extra-$(uname -r)
+sudo apt-get install linux-image-generic-lts-trusty
+
+# fixup mysql table
+
+# Install atom stuff
+sudo add-apt-repository ppa:webupd8team/atom
+sudo apt-get update
+sudo apt-get install atom
+
+apm install atom-beautify merge-conflicts rails-partials git-time-machine rails-transporter highlight-selected minimap-highlight-selected tabs-to-spaces language-javascript-jsx motepair
+
+###################
+# Browser Plugins #
+###################
+
+# https://addons.mozilla.org/en-US/firefox/addon/kindle-it/
+
+#####################
+# Mouse Fix (linux) #
+#####################
+
+# Fix your gaming mouse so it doesn't have acceleration... much...
+# first search for your mouse
+xinput --list --short
+
+# Then replace the '15' from below with the proper ID
+xinput --set-prop 15 "Coordinate Transformation Matrix" 0.6 0 0 0 0.6 0 0 0 2
+xinput --set-prop 15 "Device Accel Constant Deceleration" 1
+xinput --set-prop 15 "Device Accel Velocity Scaling" 1
+xinput --set-prop 15 "Device Accel Profile" -1
+
+##################################################
+#  Remove window shadows from Ubuntu/ Linuxmint  #
+##################################################
+
+https://github.com/linuxmint/Cinnamon/issues/2285
+echo "MUFFIN_NO_SHADOWS=1" | sudo tee -a /etc/environment

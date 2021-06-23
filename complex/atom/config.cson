@@ -1,0 +1,68 @@
+"*":
+  "atom-beautify":
+    _analyticsUserId: "f1743eee-db75-4b39-b46d-2badaf66556e"
+    analytics: false
+  "atom-pair":
+    pusher_app_key: "3f0173d82c6a0ba42871"
+    pusher_app_secret: "36560a9de00d671cc61d"
+  "autocomplete-plus":
+    scopeBlacklist: [
+      "*.md"
+    ]
+  core:
+    allowPendingPaneItems: false
+    autoHideMenuBar: true
+    automaticallyUpdate: false
+    disabledPackages: [
+      "Hydrogen"
+    ]
+    telemetryConsent: "no"
+    themes: [
+      "one-light-ui"
+      "one-light-syntax"
+    ]
+  editor:
+    invisibles: {}
+  "exception-reporting":
+    userId: "abd7c2da-84f2-8197-1d75-c9ed99f0fcad"
+  "markdown-preview":
+    liveUpdate: false
+  minimap:
+    plugins:
+      "highlight-selected": true
+      "highlight-selectedDecorationsZIndex": 0
+  "shebang-set-grammar":
+    changeNonPlainText: true
+  "split-diff":
+    diffWords: true
+    ignoreWhitespace: true
+    leftEditorColor: "red"
+    rightEditorColor: "green"
+    syncHorizontalScroll: true
+  "tabs-to-spaces":
+    onSave: "untabify"
+  "tree-view":
+    hideVcsIgnoredFiles: true
+    squashDirectoryNames: true
+  welcome:
+    showOnStartup: false
+".erb":
+  editor:
+    tabLength: 2
+".html":
+  editor:
+    softTabs: true
+    tabLength: 2
+".java.source":
+  editor:
+    tabLength: 4
+    tabType: "soft"
+".js":
+  editor:
+    tabLength: 2
+".makefile.source":
+  editor:
+    softTabs: false
+    tabLength: 4
+  "tabs-to-spaces":
+    onSave: "none"
